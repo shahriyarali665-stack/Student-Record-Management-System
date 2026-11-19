@@ -1,0 +1,72 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+struct Student {
+    int id;
+    string name;
+    int age;
+    string course;
+};
+
+Student students[100];
+int count = 0;
+
+void addStudent() {
+    cout << "Enter ID: ";
+    cin >> students[count].id;
+    cout << "Enter Name: ";
+    cin >> students[count].name;
+    cout << "Enter Age: ";
+    cin >> students[count].age;
+    cout << "Enter Course: ";
+    cin >> students[count].course;
+    count++;
+    cout << "Student Added!\n";
+}
+
+void showStudents() {
+    if (count == 0) {
+        cout << "No Students Found!\n";
+        return;
+    }
+    for (int i = 0; i < count; i++) {
+        cout << "ID: " << students[i].id
+             << " | Name: " << students[i].name
+             << " | Age: " << students[i].age
+             << " | Course: " << students[i].course << endl;
+    }
+}
+
+void searchStudent() {
+    int id;
+    cout << "Enter ID to Search: ";
+    cin >> id;
+    for (int i = 0; i < count; i++) {
+        if (students[i].id == id) {
+            cout << "Found: " << students[i].name << " - " << students[i].course << endl;
+            return;
+        }
+    }
+    cout << "Not Found!\n";
+}
+
+int main() {
+    int choice;
+    while (true) {
+        cout << "\n--- Student Record System ---\n";
+        cout << "1. Add Student\n";
+        cout << "2. Show All Students\n";
+        cout << "3. Search Student\n";
+        cout << "4. Exit\n";
+        cout << "Enter Choice: ";
+        cin >> choice;
+
+        if (choice == 1) addStudent();
+        else if (choice == 2) showStudents();
+        else if (choice == 3) searchStudent();
+        else if (choice == 4) break;
+        else cout << "Wrong Choice!\n";
+    }
+    return 0;
+}
